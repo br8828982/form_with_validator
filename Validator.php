@@ -5,6 +5,7 @@ require_once('Database.php');
 class Validator
 {
     private $data;
+    private $rules;
     private $errors = [];
     private $db;
 
@@ -16,9 +17,12 @@ class Validator
 
     public function validate($rules)
     {
-        foreach ($rules as $field => $rulesArray) {
-            foreach ($rulesArray as $rule) {
-                $this->applyRule($field, $rule);
+        $this->rules = $rules;
+      
+        foreach ($rules as $field => $rule) {
+            $rulesArray = explode('|', $rule);
+            foreach ($rulesArray as $singleRule) {
+                $this->applyRule($field, $singleRule);
             }
         }
     }

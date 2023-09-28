@@ -17,9 +17,9 @@ class Controller
     public function handleForm()
     {
         $rules = [
-            'username' => ['required', 'min:6', 'unique'],
-            'email' => ['required', 'email', 'unique'],
-            'password' => ['required', 'min:8'],
+            'username' => 'required|min:6|unique',
+            'email' => 'required|email|unique',
+            'password' => 'required|min:8',
         ];
 
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
